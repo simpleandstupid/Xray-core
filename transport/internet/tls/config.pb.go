@@ -213,6 +213,8 @@ type Config struct {
 	// @Critical
 	PinnedPeerCertificatePublicKeySha256 [][]byte `protobuf:"bytes,14,rep,name=pinned_peer_certificate_public_key_sha256,json=pinnedPeerCertificatePublicKeySha256,proto3" json:"pinned_peer_certificate_public_key_sha256,omitempty"`
 	MasterKeyLog                         string   `protobuf:"bytes,15,opt,name=master_key_log,json=masterKeyLog,proto3" json:"master_key_log,omitempty"`
+	EchConfig                            []byte   `protobuf:"bytes,16,opt,name=ech_config,json=echConfig,proto3" json:"ech_config,omitempty"`
+	Ech_DOHserver                        string   `protobuf:"bytes,17,opt,name=ech_DOHserver,json=echDOHserver,proto3" json:"ech_DOHserver,omitempty"`
 	// Lists of string as CurvePreferences values.
 	CurvePreferences []string `protobuf:"bytes,16,rep,name=curve_preferences,json=curvePreferences,proto3" json:"curve_preferences,omitempty"`
 }
@@ -345,11 +347,27 @@ func (x *Config) GetMasterKeyLog() string {
 	return ""
 }
 
+
+func (x *Config) GetEchConfig() []byte {
+	if x != nil {
+		return x.EchConfig
+  }
+  return nil
+}
+
 func (x *Config) GetCurvePreferences() []string {
 	if x != nil {
 		return x.CurvePreferences
 	}
 	return nil
+}
+
+
+func (x *Config) GetEch_DOHserver() string {
+	if x != nil {
+		return x.Ech_DOHserver
+	}
+	return ""
 }
 
 var File_transport_internet_tls_config_proto protoreflect.FileDescriptor
