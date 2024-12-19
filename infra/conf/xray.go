@@ -363,7 +363,7 @@ func (c *StatsConfig) Build() (*stats.Config, error) {
 type Config struct {
 	// Deprecated: Global transport config is no longer used
 	// left for returning error
-	Transport        map[string]json.RawMessage `json:"transport"`
+	Transport map[string]json.RawMessage `json:"transport"`
 
 	LogConfig        *LogConfig              `json:"log"`
 	RouterConfig     *RouterConfig           `json:"routing"`
@@ -593,7 +593,7 @@ func (c *Config) Build() (*core.Config, error) {
 	}
 
 	if len(c.Transport) > 0 {
-		return nil, errors.New("Global transport config is deprecated")
+		return nil, errors.PrintRemovedFeatureError("Global transport config", "streamSettings in inbounds and outbounds")
 	}
 
 	for _, rawInboundConfig := range inbounds {
